@@ -1,32 +1,42 @@
 # Keras-TensorFlow-GPU-Windows-Installation
 10 easy steps on the installation of TensorFlow-GPU and Keras in Windows
 
-### Step 1: Install Anaconda (Python 3.6 version) <a href="https://www.continuum.io/downloads" target="_blank">Download</a>
-<p align="center"><img width=70% src="https://github.com/antoniosehk/keras-tensorflow-windows-installation/blob/master/anaconda_windows_installation.png"></p>
+## 1. Install Anaconda python
 
-### Step 2: Update Anaconda
+### 1.1: Install Anaconda (Python 3.6 version) <a href="https://www.continuum.io/downloads" target="_blank">Download</a>
+<p align="center"><img width=70% src="anaconda_windows_installation.png"></p>
+
+### 1.2: Update Anaconda
 Open Anaconda Prompt to type the following command(s)
 ```Command Prompt
 conda update conda
 conda update --all
 ```
 
-### Step 3: Install CUDA Tookit 8.0 <a href="https://developer.nvidia.com/cuda-downloads" target="_blank">Download</a>
+### 1.3: Install python IDE
+Install your favorite python IDE (Python Tools for Visual Studio, PyCharm, Ninja...)
+
+
+## 2. If you have GPU, install CUDA and cuDNN
+
+### 2.1: Install CUDA Tookit 8.0 <a href="https://developer.nvidia.com/cuda-downloads" target="_blank">Download</a>
 Choose your version depending on your Operating System
 
-<p align="center"><img width=70% src="https://github.com/antoniosehk/keras-tensorflow-windows-installation/blob/master/cuda8_windows7_local_installation.png"></p>
+<p align="center"><img width=70% src="cuda8_windows7_local_installation.png"></p>
 
-### Step 4: Download cuDNN <a href="https://developer.nvidia.com/rdp/cudnn-download" target="_blank">Download</a>
+For more information, refer to <a href="http://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/index.html">official documentation.</a>
+
+### 2.2: Download cuDNN <a href="https://developer.nvidia.com/rdp/cudnn-download" target="_blank">Download</a>
 Choose your version depending on your Operating System.
 Membership registration is required.
 
-<p align="center"><img width=70% src="https://github.com/antoniosehk/keras-tensorflow-windows-installation/blob/master/cuDNN_windows_download.png"></p>
+<p align="center"><img width=70% src="cuDNN_windows_download.png"></p>
 
 Put your unzipped folder in C drive as follows: 
 ```Command Prompt
 C:\cudnn-8.0-windows10-x64-v5.1
 ```
-### Step 5: Add cuDNN into Environment PATH <a href="https://kb.wisc.edu/cae/page.php?id=24500" target="_blank">Tutorial</a>
+### 2.3: Add cuDNN into Environment PATH <a href="https://kb.wisc.edu/cae/page.php?id=24500" target="_blank">Tutorial</a>
 
 Add the following path in your Environment.
 Subjected to changes in your installation path.
@@ -35,44 +45,54 @@ C:\cudnn-8.0-windows10-x64-v5.1\cuda\bin
 ```
 
 Turn off all the prompts. 
-Open a new Anaconda Prompt to type the following command(s)
+Open a new command prompt and type the following command
 ```Command Prompt
 echo %PATH%
 ```
 You shall see that the new Environment PATH is there.
 
-### Step 6: Create an Anaconda environment with Python=3.5
-Open Anaconda Prompt to type the following command(s)
+## 3. Install TensorFlow
+
+### 3.1: Create an Anaconda environment with Python=3.5
+Open command prompt (**as an administrator**) and type the following command
 ```Command Prompt
 conda create -n tensorflow python=3.5 numpy scipy matplotlib spyder
 ```
 
-### Step 7: Activate the environment
-Open Anaconda Prompt to type the following command(s)
+### 3.2: Activate the environment
+In the command prompt type the following command
 ```Command Prompt
 activate tensorflow
 ```
 
-### Step 8: Install TensorFlow-GPU-1.0.1
-Open Anaconda Prompt to type the following command(s)
+### 3.3.1: If you have a GPU, install TensorFlow-GPU-1.0.1
+In the command prompt type the following command
 ```Command Prompt
 pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/windows/gpu/tensorflow_gpu-1.0.1-cp35-cp35m-win_amd64.whl
 ```
 
-### Step 9: Install Keras
-Open Anaconda Prompt to type the following command(s)
+### 3.3.2: If you don't have a GPU, install CPU version of TensorFlow
+In the command prompt type the following command
+```Command Prompt
+pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/windows/cpu/tensorflow-1.2.1-cp35-cp35m-win_amd64.whl
+```
+
+For more information, refer to <a href="https://www.tensorflow.org/install/install_windows">official documentation.</a>
+
+## 4. Install Keras
+In the command prompt type the following command
 ```Command Prompt
 pip install keras
 ```
 
-### Step 10: Testing
-Let's try running <a href="https://github.com/antoniosehk/keras-tensorflow-windows-installation/blob/master/examples/mnist_mlp.py">mnist_mlp.py</a> in your prompt.
+## 5. Test the installation
+Let's try running ```examples/mnist_mlp.py``` in your prompt.
 
-Open Anaconda Prompt to type the following command(s)
+Open command prompt in the ```examples``` folder and type the following commands
 ```Command Prompt
 activate tensorflow
 python mnist_mlp.py
 ```
-Congratulations ! You have successfully run Keras (with Tensorflow backend) over GPU on Windows !
+Congratulations ! You have successfully run Keras (with Tensorflow backend) over CPU/GPU on Windows!
 
-<p align="left"><img width=100% src="https://github.com/antoniosehk/keras-tensorflow-windows-installation/blob/master/installation_success.png"></p>
+<p align="left"><img width=100% src="installation_success.png"></p>
