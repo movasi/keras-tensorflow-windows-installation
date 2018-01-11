@@ -1,20 +1,31 @@
 # Keras-TensorFlow-GPU-Windows-Installation
-10 easy steps on the installation of TensorFlow-GPU and Keras in Windows
 
-## 1. Install Anaconda python
+Installation instructions for TensorFlow and Keras on Windows.
 
-### 1.1: Install Anaconda (Python 3.6 version) <a href="https://www.continuum.io/downloads" target="_blank">Download</a>
-<p align="center"><img width=70% src="anaconda_windows_installation.png"></p>
+## 1. Install Miniconda python
 
-### 1.2: Update Anaconda
-Open Anaconda Prompt to type the following command(s)
-```Command Prompt
+Miniconda installers contain the conda package manager and Python. Once Miniconda is installed, you can use the conda command to install any other packages and create environments, etc.
+
+### 1.1: Install Miniconda (Python 3.6 version) <a href="https://conda.io/miniconda.html" target="_blank">Download</a>
+
+<p align="center"><img width=70% src="miniconda.png"></p>
+
+### 1.2: Update conda
+
+Run Anaconda Prompt as administrator
+
+<p align="center"><img src="prompt.png"></p>
+
+and type the following command(s)
+
+```cmd
 conda update conda
 conda update --all
 ```
 
 ### 1.3: Install python IDE
-Install your favorite python IDE (Python Tools for Visual Studio, PyCharm, Ninja...)
+
+Install your favorite python IDE (Visual Studio Code, Python Tools for Visual Studio, PyCharm, Ninja...)
 
 
 ## 2. If you have GPU, install CUDA and cuDNN
@@ -32,67 +43,118 @@ Membership registration is required.
 
 <p align="center"><img width=70% src="cuDNN_windows_download.png"></p>
 
-Put your unzipped folder in C drive as follows: 
-```Command Prompt
+Put your unzipped folder in C drive as follows:
+
+```cmd
 C:\cudnn-8.0-windows10-x64-v5.1
 ```
+
 ### 2.3: Add cuDNN into Environment PATH <a href="https://kb.wisc.edu/cae/page.php?id=24500" target="_blank">Tutorial</a>
 
 Add the following path in your Environment.
 Subjected to changes in your installation path.
-```Command Prompt
+
+```cmd
 C:\cudnn-8.0-windows10-x64-v5.1\cuda\bin
 ```
 
-Turn off all the prompts. 
+Close all prompts.
 Open a new command prompt and type the following command
-```Command Prompt
+
+```cmd
 echo %PATH%
 ```
+
 You shall see that the new Environment PATH is there.
 
 ## 3. Install TensorFlow
 
-### 3.1: Create an Anaconda environment with Python=3.5
-Open command prompt (**as an administrator**) and type the following command
-```Command Prompt
-conda create -n tensorflow python=3.5 numpy scipy matplotlib spyder
+### 3.1: Create an Anaconda environment with Python=3.6
+
+Open Anaconda prompt (**as an administrator**) and type the following command
+
+```cmd
+conda create -n tensorflow python=3.6
 ```
 
-### 3.2: Activate the environment
+### 3.2: Activate TensorFlow environment
+
 In the command prompt type the following command
-```Command Prompt
+
+```cmd
 activate tensorflow
 ```
 
-### 3.3.1: If you have a GPU, install TensorFlow-GPU-1.0.1
-In the command prompt type the following command
-```Command Prompt
-pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/windows/gpu/tensorflow_gpu-1.0.1-cp35-cp35m-win_amd64.whl
+### 3.3: Install TensorFlow package
+
+If you have a GPU, install GPU version of TensorFlow by running the following command
+
+```cmd
+pip install --ignore-installed --upgrade tensorflow-gpu
 ```
 
-### 3.3.2: If you don't have a GPU, install CPU version of TensorFlow
-In the command prompt type the following command
-```Command Prompt
-pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/windows/cpu/tensorflow-1.2.1-cp35-cp35m-win_amd64.whl
+If you don't have a GPU, install CPU version of TensorFlow by running the following command
+
+```cmd
+pip install --ignore-installed --upgrade tensorflow
 ```
 
 For more information, refer to <a href="https://www.tensorflow.org/install/install_windows">official documentation.</a>
 
 ## 4. Install Keras
+
 In the command prompt type the following command
-```Command Prompt
+
+```cmd
 pip install keras
 ```
 
 ## 5. Test the installation
-Let's try running ```examples/mnist_mlp.py``` in your prompt.
 
-Open command prompt in the ```examples``` folder and type the following commands
-```Command Prompt
+Let's try running ```examples/mnist_mlp.py``` in your Anaconda prompt.
+
+Open Anaconda prompt in the ```examples``` folder and type the following commands
+
+```cmd
 activate tensorflow
 python mnist_mlp.py
 ```
-Congratulations ! You have successfully run Keras (with Tensorflow backend) over CPU/GPU on Windows!
 
-<p align="left"><img width=100% src="installation_success.png"></p>
+You should see output similar to this:
+
+```cmd
+Using TensorFlow backend.
+60000 train samples
+10000 test samples
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+dense_1 (Dense)              (None, 512)               401920
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 512)               0
+_________________________________________________________________
+dense_2 (Dense)              (None, 512)               262656
+_________________________________________________________________
+dropout_2 (Dropout)          (None, 512)               0
+_________________________________________________________________
+dense_3 (Dense)              (None, 10)                5130
+=================================================================
+Total params: 669,706
+Trainable params: 669,706
+Non-trainable params: 0
+_________________________________________________________________
+Train on 60000 samples, validate on 10000 samples
+Epoch 1/20
+60000/60000 [==============================] - 5s 77us/step - loss: 0.2414 - acc: 0.9264 - val_loss: 0.1263 - val_acc: 0.9584
+Epoch 2/20
+60000/60000 [==============================] - 3s 43us/step - loss: 0.1028 - acc: 0.9690 - val_loss: 0.0846 - val_acc: 0.9746
+...
+...
+...
+Epoch 20/20
+60000/60000 [==============================] - 3s 44us/step - loss: 0.0163 - acc: 0.9959 - val_loss: 0.1230 - val_acc: 0.9831
+Test loss: 0.123033428495213
+Test accuracy: 0.9831
+```
+
+Congratulations! You have successfully run Keras (with Tensorflow backend) on Windows!
